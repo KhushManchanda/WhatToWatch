@@ -3,11 +3,19 @@ import React from "react";
 function App() {
 	return (
 		<div>
-			<h1>Hello</h1>
-			<select name="genre" id="genre">
+			<select name="genre" id="genre-1">
 				<option value="sci-fi">Sci-Fi</option>
-				<option value="saab">Romance</option>
+				<option value="romance">Romance</option>
+				<option value="adventure">Adventure</option>
+				<option value="thriller">Thriller</option>
 			</select>
+			<select name="genre" id="genre-2">
+				<option value="sci-fi">Sci-Fi</option>
+				<option value="romance">Romance</option>
+				<option value="adventure">Adventure</option>
+				<option value="thriller">Thriller</option>
+			</select>
+			<button>Search</button>
 		</div>
 	);
 }
