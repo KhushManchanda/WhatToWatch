@@ -1,9 +1,8 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "proxy": "http://localhost:3000/",
   "description": "",
-  "main": "file.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
   },
