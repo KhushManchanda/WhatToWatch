@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function App() {
-	const [backendData, setBackendData] = useState([{}]);
+	const [movie, setMovie] = useState("NOT YET GIVEN");
 
 	useEffect(() => {
-		fetch("/api")
-			.then((response) => response.json())
-			.then((data) => {
-				setBackendData(data);
-			});
+		axios.get("/getWeathertoronto").then(function (response) {
+			setMovie(response.data.results[10].title);
+		});
 	}, []);
 
 	return (
 		<div>
+			<h1>{movie}</h1>
 			<select name="genre" id="genre-1">
 				<option value="sci-fi">Sci-Fi</option>
 				<option value="romance">Romance</option>
