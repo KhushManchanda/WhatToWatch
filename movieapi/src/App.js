@@ -3,10 +3,12 @@ import axios from 'axios';
 import './App.css';
 import MovieCard from './components/MovieCard';
 
+
 function App() {
 
   const API_URL = "https://api.themoviedb.org/3"
   const [movies, setMovies] = useState([])
+  const [genres, setGenres] = useState([])
   const [searchKey, setSearchKey] = useState("")
  
 
@@ -23,8 +25,32 @@ const fetchMovies = async (searchKey) => {
 
   }
 
+  const fetchGenres = async() => {
+    const {data: {genres}} = await axios.get(`${API_URL}/genre/movie/list`, {
+      params: {
+        api_key: process.env.REACT_APP_MOVIE_API_KEY,
+      
+      }
+    })
+    console.log('genres', genres[0].name)
+    setGenres(genres)
+  }
+
+  // const fetchThatGenre = async(searchGenre) => {
+  //   const {data: {results}} = await axios.get(`${API_URL}/discover/movie/`, {
+  //     params: {
+  //       api_key: process.env.REACT_APP_MOVIE_API_KEY,
+  //       with_genres: searchGenre
+      
+  //     }
+  //   })
+  //   console.log('results', genres[0].name)
+  //   setGenres(results)
+  // }
+
   useEffect(() => {
     fetchMovies()
+    fetchGenres()
 
   }, [])
 
