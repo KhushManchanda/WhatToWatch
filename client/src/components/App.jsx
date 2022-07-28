@@ -7,10 +7,12 @@ function App() {
 	const [movie, setMovie] = useState("NOT YET GIVEN");
 
 	useEffect(() => {
-		axios.get("/getWeathertoronto").then(function (response) {
-			setMovie(response.data.results[10].title);
+		axios.get("/api").then(function (response) {
+			setMovie(response.data.results[0].title);
 		});
 	}, []);
+
+	
 
 	return (
 		<div>
