@@ -8,7 +8,9 @@ function App() {
 	const API_URL = "https://api.themoviedb.org/3";
 	const [movies, setMovies] = useState([]);
 	const [genres, setGenres] = useState([]);
-	const [searchKey, setSearchKey] = useState("");
+	
+	const [searchGenre, setSearchGenre] = useState("");
+	const [searchGenretwo, setSearchGenretwo] = useState("");
 
 	const fetchMovies = async (searchKey) => {
 		const type = searchKey ? "search" : "discover";
@@ -24,6 +26,21 @@ function App() {
 		setMovies(results);
 	};
 
+	const fetchMovieWithGenre = async (searchGenre, searchGenretwo) => {
+		const type = searchGenre ? "discover" : "discover";
+		const {
+			data: { results },
+		} = await axios.get(`${API_URL}/${type}/movie`, {
+			params: {
+				api_key: process.env.REACT_APP_MOVIE_API_KEY,
+				with_genres: searchGenre + ',' + searchGenretwo,
+			},
+		});
+		
+
+		setMovies(results);
+	};
+
 	const fetchGenres = async () => {
 		const {
 			data: { genres },
@@ -32,45 +49,40 @@ function App() {
 				api_key: process.env.REACT_APP_MOVIE_API_KEY,
 			},
 		});
-		console.log("genres", genres[0].name);
+		
 		setGenres(genres);
 		// console.log(genres);
 	};
 
-	// const fetchThatGenre = async(searchGenre) => {
-	//   const {data: {results}} = await axios.get(`${API_URL}/discover/movie/`, {
-	//     params: {
-	//       api_key: process.env.REACT_APP_MOVIE_API_KEY,
-	//       with_genres: searchGenre
-
-	//     }
-	//   })
-	//   console.log('results', genres[0].name)
-	//   setGenres(results)
-	// }
+	
 
 	useEffect(() => {
 		fetchMovies();
 		fetchGenres();
+		
+
 	}, []);
 
 	const renderMovies = () =>
 		movies.map((movie) => <MovieCard key={movie.id} movie={movie} />);
+	
 
 	const searchMovies = (e) => {
 		e.preventDefault();
-		fetchMovies(searchKey);
+		fetchMovieWithGenre(searchGenre, searchGenretwo);
 	};
+	
 	function CreateGenre(props) {
-		return <Genre name={props.name} id={props.id} />;
+		return <Genre key={props.id} name={props.name} id={props.id} />;
 	}
 	return (
 		<div className="App">
 			<header>
 				<h1>Movie Search App</h1>
 				<form onSubmit={searchMovies}>
-					<input type="text" onChange={(e) => setSearchKey(e.target.value)} />
-					<select name="firstGenre">{genres.map(CreateGenre)}</select>
+					{/* <input type="text" onChange={(e) => setSearchGenre(e.target.value)} /> */}
+					<select onChange={(e) => setSearchGenre(e.target.value)} name="firstGenre">{genres.map(CreateGenre)}</select>
+					<select onChange={(e) => setSearchGenretwo(e.target.value)} name="secondGenre">{genres.map(CreateGenre)}</select>
 					<button type="submit">Search!</button>
 				</form>
 			</header>
