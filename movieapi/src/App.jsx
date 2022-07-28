@@ -72,14 +72,21 @@ function App() {
 	return (
 		<div className="App">
 			<header>
-
 				<h1 className="title">Movie Search App</h1>
 				<form className="input-class" onSubmit={searchMovies}>
-					{/* <input type="text" onChange={(e) => setSearchGenre(e.target.value)} /> */}
-					<select onChange={(e) => setSearchGenre(e.target.value)} name="firstGenre">{genres.map(CreateGenre)}</select>
-					<select onChange={(e) => setSearchGenretwo(e.target.value)} name="secondGenre">{genres.map(CreateGenre)}</select>
+					<select
+						onChange={(e) => setSearchGenre(e.target.value)}
+						name="firstGenre"
+					>
+						{genres.map(CreateGenre)}
+					</select>
+					<select
+						onChange={(e) => setSearchSecondGenre(e.target.value)}
+						name="secondGenre"
+					>
+						{genres.map(CreateGenre)}
+					</select>
 					<button type="submit">Search!</button>
-
 				</form>
 			</header>
 
