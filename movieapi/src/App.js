@@ -9,6 +9,7 @@ function App() {
   const API_URL = "https://api.themoviedb.org/3"
   const [movies, setMovies] = useState([])
   const [genres, setGenres] = useState([])
+  const [searchGenre, setThatGenre] = useState([])
   const [searchKey, setSearchKey] = useState("")
  
 
@@ -25,6 +26,20 @@ const fetchMovies = async (searchKey) => {
 
   }
 
+  const fetchThatGenre = async(searchGenre) => {
+    const {data: {results}} = await axios.get(`${API_URL}/discover/movie/`, {
+      params: {
+        api_key: process.env.REACT_APP_MOVIE_API_KEY,
+        with_genres: searchGenre
+      
+      }
+    })
+    
+    setThatGenre(results)
+  }
+
+
+
   const fetchGenres = async() => {
     const {data: {genres}} = await axios.get(`${API_URL}/genre/movie/list`, {
       params: {
@@ -36,26 +51,17 @@ const fetchMovies = async (searchKey) => {
     setGenres(genres)
   }
 
-  // const fetchThatGenre = async(searchGenre) => {
-  //   const {data: {results}} = await axios.get(`${API_URL}/discover/movie/`, {
-  //     params: {
-  //       api_key: process.env.REACT_APP_MOVIE_API_KEY,
-  //       with_genres: searchGenre
-      
-  //     }
-  //   })
-  //   console.log('results', genres[0].name)
-  //   setGenres(results)
-  // }
+  
 
   useEffect(() => {
     fetchMovies()
     fetchGenres()
+    fetchThatGenre()
 
   }, [])
 
   const renderMovies = () => (
-    movies.map(movie => (
+    searchGenre.map(movie => (
       <MovieCard
         key={movie.id}
         movie={movie}
@@ -70,13 +76,19 @@ const fetchMovies = async (searchKey) => {
 
   }
 
+  const searchGenres = (e) => {
+    e.preventDefault()
+    fetchThatGenre(searchGenre)
+  }
+
 
   return (
     <div className="App">
       <header>
         <h1>Movie Search App</h1>
+        
         <form onSubmit={searchMovies}>
-          <input type="text" onChange={(e) => setSearchKey(e.target.value)}/>
+          <input type="text" onChange={(e) => setThatGenre(e.target.value)}/>
           <button type='submit'>Search!</button>
         </form>
       </header>
