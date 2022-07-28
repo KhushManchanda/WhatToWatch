@@ -8,35 +8,34 @@ function App() {
 	const API_URL = "https://api.themoviedb.org/3";
 	const [movies, setMovies] = useState([]);
 	const [genres, setGenres] = useState([]);
-	
-	const [searchGenre, setSearchGenre] = useState("");
-	const [searchGenretwo, setSearchGenretwo] = useState("");
 
-	const fetchMovies = async (searchKey) => {
-		const type = searchKey ? "search" : "discover";
+	const [searchGenre, setSearchGenre] = useState("");
+	const [searchSecondGenre, setSearchSecondGenre] = useState("");
+
+	const fetchMovies = async (searchMovie) => {
+		const type = searchMovie ? "search" : "discover";
 		const {
 			data: { results },
 		} = await axios.get(`${API_URL}/${type}/movie`, {
 			params: {
 				api_key: process.env.REACT_APP_MOVIE_API_KEY,
-				query: searchKey,
+				query: searchMovie,
 			},
 		});
 
 		setMovies(results);
 	};
 
-	const fetchMovieWithGenre = async (searchGenre, searchGenretwo) => {
+	const fetchMovieWithGenre = async (searchGenre, searchSecondGenre) => {
 		const type = searchGenre ? "discover" : "discover";
 		const {
 			data: { results },
 		} = await axios.get(`${API_URL}/${type}/movie`, {
 			params: {
 				api_key: process.env.REACT_APP_MOVIE_API_KEY,
-				with_genres: searchGenre + ',' + searchGenretwo,
+				with_genres: searchGenre + "," + searchSecondGenre,
 			},
 		});
-		
 
 		setMovies(results);
 	};
@@ -49,41 +48,38 @@ function App() {
 				api_key: process.env.REACT_APP_MOVIE_API_KEY,
 			},
 		});
-		
-		setGenres(genres);
-		// console.log(genres);
-	};
 
-	
+		setGenres(genres);
+	};
 
 	useEffect(() => {
 		fetchMovies();
 		fetchGenres();
-		
-
 	}, []);
 
 	const renderMovies = () =>
 		movies.map((movie) => <MovieCard key={movie.id} movie={movie} />);
-	
 
 	const searchMovies = (e) => {
 		e.preventDefault();
-		fetchMovieWithGenre(searchGenre, searchGenretwo);
+		fetchMovieWithGenre(searchGenre, searchSecondGenre);
 	};
-	
+
 	function CreateGenre(props) {
 		return <Genre key={props.id} name={props.name} id={props.id} />;
 	}
+
 	return (
 		<div className="App">
 			<header>
+
 				<h1 className="title">Movie Search App</h1>
 				<form className="input-class" onSubmit={searchMovies}>
 					{/* <input type="text" onChange={(e) => setSearchGenre(e.target.value)} /> */}
 					<select onChange={(e) => setSearchGenre(e.target.value)} name="firstGenre">{genres.map(CreateGenre)}</select>
 					<select onChange={(e) => setSearchGenretwo(e.target.value)} name="secondGenre">{genres.map(CreateGenre)}</select>
 					<button type="submit">Search!</button>
+
 				</form>
 			</header>
 
