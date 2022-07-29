@@ -8,6 +8,7 @@ function App() {
 	const API_URL = "https://api.themoviedb.org/3";
 	const [movies, setMovies] = useState([]);
 	const [genres, setGenres] = useState([]);
+	const [actor, setActor] = useState("");
 
 	const [searchGenre, setSearchGenre] = useState("");
 	const [searchSecondGenre, setSearchSecondGenre] = useState("");
@@ -40,6 +41,43 @@ function App() {
 		setMovies(results);
 	};
 
+	const fetchActorId = async (actor) => {
+		// https://api.themoviedb.org/3/search/person?api_key=2e890be7ebc8e9902eada09fa3096b68&query=Anne%20Hathaway
+	
+		const {
+			data: { results },
+		} = await axios.get(`${API_URL}/search/person`, {
+			params: {
+				api_key: process.env.REACT_APP_MOVIE_API_KEY,
+				query: actor,
+			},
+		});
+		
+
+		setActor(results);
+		return results[0].id;
+	};
+
+	const fetchActorMovie = async (actorId) => {
+	
+		// https://api.themoviedb.org/3/person/1813/movie_credits?api_key=2e890be7ebc8e9902eada09fa3096b68
+		const {
+
+			data: { results },
+		} = await axios.get(`${API_URL}/person/${actorId}/movie_credits`, {
+			params: {
+				api_key: process.env.REACT_APP_MOVIE_API_KEY,
+			},
+		});
+		
+
+		setMovies(results);
+	};
+
+
+
+
+
 	const fetchGenres = async () => {
 		const {
 			data: { genres },
@@ -55,6 +93,7 @@ function App() {
 	useEffect(() => {
 		fetchMovies();
 		fetchGenres();
+		// fetchActorId();
 	}, []);
 
 	const renderMovies = () =>
@@ -63,6 +102,10 @@ function App() {
 	const searchMovies = (e) => {
 		e.preventDefault();
 		fetchMovieWithGenre(searchGenre, searchSecondGenre);
+		const actorId = fetchActorId(actor);
+		console.log(actorId);
+		fetchActorMovie(actorId);
+
 	};
 
 	function CreateGenre(props) {
@@ -74,7 +117,7 @@ function App() {
 			<header>
 				<h1 className="title">Movie Search App</h1>
 				<form className="input-class" onSubmit={searchMovies}>
-					<select
+					{/* <select
 						onChange={(e) => setSearchGenre(e.target.value)}
 						name="firstGenre"
 					>
@@ -85,7 +128,8 @@ function App() {
 						name="secondGenre"
 					>
 						{genres.map(CreateGenre)}
-					</select>
+					</select> */}
+					<input onChange={(e) => setActor(e.target.value)}></input>
 					<button type="submit">Search!</button>
 				</form>
 			</header>
