@@ -21,15 +21,17 @@ const MovieThumbnail = ({ movie }) => {
 				/>
 			) : null}
 
-			<h5>{movie.title}</h5>
+			<h5 className="movie-title">{movie.title}</h5>
 			{isOpen && (
 				<MovieCard
 					content={
-						<>
-							<img src={`${IMAGE_PATH}${movie.backdrop_path}`} alt="" />
-							<h1 className="hello">{movie.title}</h1>
-							<h6>Release Date: {movie.release_date}</h6>
-							<p>{movie.overview}</p>
+						<>	<div class="containerr">
+							<img class="movie-backdrop" src={`${IMAGE_PATH}${movie.backdrop_path}`} alt="" />
+
+							<h1 className="hello centeredd">{movie.title}</h1>
+							<h6 className="centeredd"> Release Date: {movie.release_date}</h6>
+							<p className="centeredd">{movie.overview}</p>
+							</div>
 						</>
 					}
 					handleClose={togglePopup}

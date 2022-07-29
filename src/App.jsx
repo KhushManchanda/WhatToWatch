@@ -4,6 +4,7 @@ import "./CSS/App.css";
 import MovieThumbnail from "./components/MovieThumbnail.jsx";
 import Genre from "./components/Genres.jsx";
 
+
 function App() {
 	const API_URL = "https://api.themoviedb.org/3";
 	const [movies, setMovies] = useState([]);
@@ -72,21 +73,29 @@ function App() {
 	return (
 		<div className="App">
 			<header>
-				<h1 className="title">Movie Search App</h1>
+				<h1 className="title">
+					Movie Search App
+					</h1>
 				<form className="input-class" onSubmit={searchMovies}>
-					<select
+					<div >
+					<select class="form-select form-select-lg mb-3"
 						onChange={(e) => setSearchGenre(e.target.value)}
 						name="firstGenre"
 					>
 						{genres.map(CreateGenre)}
 					</select>
-					<select
+					</div>
+					<div >
+					<select id="month" class="form-select form-select-lg mb-3"
 						onChange={(e) => setSearchSecondGenre(e.target.value)}
 						name="secondGenre"
 					>
-						{genres.map(CreateGenre)}
+							{genres.map(CreateGenre)}
 					</select>
-					<button type="submit">Search!</button>
+					</div>
+					
+					<button className="btn-lg mb-3 btn-primary" type="submit">Search!</button>
+					
 				</form>
 			</header>
 
