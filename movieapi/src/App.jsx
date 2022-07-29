@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./App.css";
-import MovieCard from "./components/MovieCard";
-import Genre from "./components/Genres";
+import "./CSS/App.css";
+import MovieThumbnail from "./components/MovieThumbnail.jsx";
+import Genre from "./components/Genres.jsx";
 
 function App() {
 	const API_URL = "https://api.themoviedb.org/3";
@@ -58,7 +58,7 @@ function App() {
 	}, []);
 
 	const renderMovies = () =>
-		movies.map((movie) => <MovieCard key={movie.id} movie={movie} />);
+		movies.map((movie) => <MovieThumbnail key={movie.id} movie={movie} />);
 
 	const searchMovies = (e) => {
 		e.preventDefault();

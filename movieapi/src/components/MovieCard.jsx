@@ -1,19 +1,14 @@
 import React from "react";
-
-const MovieCard = ({ movie }) => {
-	const IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
-
+import "../CSS/MovieCard.css";
+const MovieCard = (props) => {
 	return (
-		<div className={"movie-card"}>
-			{movie.poster_path ? (
-				<img
-					className={"movie-cover"}
-					src={`${IMAGE_PATH}${movie.poster_path}`}
-					alt=""
-				/>
-			) : null}
-
-			<h5>{movie.title}</h5>
+		<div className="popup-box">
+			<div className="box">
+				<span className="close-icon" onClick={props.handleClose}>
+					x
+				</span>
+				{props.content}
+			</div>
 		</div>
 	);
 };
