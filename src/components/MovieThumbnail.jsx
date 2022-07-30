@@ -13,24 +13,34 @@ const MovieThumbnail = ({ movie }) => {
 	return (
 		<div className={"movie-card"}>
 			{movie.poster_path ? (
+				<div className="try">
 				<img
 					onClick={togglePopup}
-					className={"movie-cover"}
+					className={"movie-cover hover-effect"}
 					src={`${IMAGE_PATH}${movie.poster_path}`}
 					alt=""
-				/>
+				/></div>
 			) : null}
 
-			<h5>{movie.title}</h5>
+			<h5 className="movie-title">{movie.title}</h5>
 			{isOpen && (
 				<MovieCard
 					content={
-						<>
-							<img src={`${IMAGE_PATH}${movie.backdrop_path}`} alt="" />
-							<h1 className="hello">{movie.title}</h1>
-							<h6>Release Date: {movie.release_date}</h6>
-							<p>{movie.overview}</p>
-						</>
+							
+							<div className="d-flex flex-row ">
+								<div className="p-2">
+									<img className="poster-image" src={`${IMAGE_PATH}${movie.poster_path}`} alt="" />
+								</div>
+								<div className="p-2">
+									<div className="d-flex flex-column align-items-left">
+										<h1 className="p-2 movie-name">{movie.title}</h1>
+										<h6 className="p-2 rating"> Rating: {movie.vote_average}</h6>
+										<p className="p-2 overview">{movie.overview}</p>
+									</div>
+								</div>
+							</div>
+
+						
 					}
 					handleClose={togglePopup}
 				/>

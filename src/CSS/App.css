@@ -1,18 +1,29 @@
+body {
+  background-color: #090a0e;
+  color: white;
+}
+
 .container {
-  max-width: 1000px;
+  max-width: 90%;
   margin-left: auto;
   margin-right: auto;
 
   display: grid;
-  gap: 15px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 45px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  
 }
 .movie-cover {
   width: 100%;
 }
 
+
 .title {
   text-align: center;
+  font-size: 60px;
+  padding-bottom: 40px;
+  padding-top: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .input-class{
@@ -24,3 +35,5 @@
   gap: 10px;
   grid-template-columns: 1fr 1fr 1fr;
 }
+
+

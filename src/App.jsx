@@ -4,15 +4,20 @@ import "./CSS/App.css";
 import MovieThumbnail from "./components/MovieThumbnail.jsx";
 import Genre from "./components/Genres.jsx";
 
+
 function App() {
 	const API_URL = "https://api.themoviedb.org/3";
 	const [movies, setMovies] = useState([]);
 	const [genres, setGenres] = useState([]);
+
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState();
 
+
 	const [searchGenre, setSearchGenre] = useState("");
 	const [searchSecondGenre, setSearchSecondGenre] = useState("");
+
+	
 
 	const fetchMovies = async (searchMovie) => {
 		const type = searchMovie ? "search" : "discover";
@@ -23,7 +28,9 @@ function App() {
 			params: {
 				api_key: process.env.REACT_APP_MOVIE_API_KEY,
 				query: searchMovie,
+
 				page: page,
+
 			},
 		});
 
@@ -40,7 +47,8 @@ function App() {
 			params: {
 				api_key: process.env.REACT_APP_MOVIE_API_KEY,
 				with_genres: searchGenre + "," + searchSecondGenre,
-				page: page,
+        page: page,
+
 			},
 		});
 
@@ -63,6 +71,7 @@ function App() {
 	useEffect(() => {
 		fetchMovies();
 		fetchGenres();
+		
 	}, []);
 
 	const renderMovies = () =>
@@ -70,29 +79,45 @@ function App() {
 
 	const searchMovies = (e) => {
 		e.preventDefault();
-		fetchMovieWithGenre(searchGenre, searchSecondGenre);
+		fetchMovieWithGenre(searchGenre, searchSecondGenre, pageNumber);
 	};
+
+	
 
 	function CreateGenre(props) {
 		return <Genre key={props.id} name={props.name} id={props.id} />;
 	}
+
+
 	return (
 		<div className="App">
 			<header>
-				<h1 className="title">Movie Search App</h1>
+				
+			
+
+					<h1 class="navbar navbar-light bg-dark">What to watch</h1>
+					
+					
+					
 				<form className="input-class" onSubmit={searchMovies}>
-					<select
+					<div >
+					<select class="form-select form-select-lg mb-3"
 						onChange={(e) => setSearchGenre(e.target.value)}
 						name="firstGenre"
 					>
 						{genres.map(CreateGenre)}
 					</select>
-					<select
+					</div>
+					<div >
+					<select id="month" class="form-select form-select-lg mb-3"
 						onChange={(e) => setSearchSecondGenre(e.target.value)}
 						name="secondGenre"
 					>
-						{genres.map(CreateGenre)}
+							{genres.map(CreateGenre)}
 					</select>
+
+					</div>
+
 					<button
 						type="submit"
 						onClick={() => {
@@ -101,10 +126,13 @@ function App() {
 					>
 						Search
 					</button>
+
 				</form>
 			</header>
 
 			<div className="container">{renderMovies()}</div>
+
+			
 			<form onSubmit={searchMovies}>
 				<button
 					onClick={() => {
@@ -126,6 +154,7 @@ function App() {
 					{page} /{totalPages}
 				</p>
 			</form>
+
 		</div>
 	);
 }
