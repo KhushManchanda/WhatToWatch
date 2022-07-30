@@ -5,6 +5,7 @@
     height: 100vh;
     top: 0;
     left: 0;
+    transition: 0.5s all ease-in-out;
 }
   
     .box {
@@ -15,10 +16,36 @@
     max-height: 70vh;
     margin-top: calc(100vh - 85vh - 20px);
     background: black;
-    border-radius: 4px;
+    border-radius: 25px;
     padding: 20px;
-    border: 1px solid #999;
+    border: 1px solid rgb(255, 255, 255);
     overflow: auto;
+    transition: 0.5s all ease-in-out;
+}
+
+.poster-image {
+  width: auto;
+  height: auto;
+  max-height: 60vh;
+  border-radius: 25px;
+}
+
+.try {
+  overflow: hidden;
+  border-radius: 25px;
+  
+}
+.hover-effect {
+  
+  width: 100%;
+        transition: 0.5s all ease-in-out;
+}
+
+
+.hover-effect:hover {
+  transform: scale(1.1);
+  
+    filter: blur(2px);
 }
   
 .close-icon {
@@ -50,25 +77,18 @@
   object-fit: contain;
 }
 
-.containerr {
-    margin: 3%;
-            position: relative;
-  }
+.movie-name {
+  text-align: center;
+  font-size: 60px;
+  font-weight: bold;
+}
 
-  .text-1 {
-    position: absolute;
-            top: 17px;
-            left: 20px;
-  }
+.overview{
+  font-size: 30px;
+}
 
-  .text-2 {
-    position: absolute;
-            top: 17px;
-            left: 20px;
-  }
+.rating{
+  font-size: 30px;
+}
 
-  .text-3 {
-    position: absolute;
-            top: 17px;
-            left: 20px;
-  }
+
