@@ -8,6 +8,8 @@ function App() {
 	const API_URL = "https://api.themoviedb.org/3";
 	const [movies, setMovies] = useState([]);
 	const [genres, setGenres] = useState([]);
+	const [page, setPage] = useState(1);
+	const [totalPages, setTotalPages] = useState();
 
 	const [searchGenre, setSearchGenre] = useState("");
 	const [searchSecondGenre, setSearchSecondGenre] = useState("");
@@ -16,28 +18,34 @@ function App() {
 		const type = searchMovie ? "search" : "discover";
 		const {
 			data: { results },
+			data: { total_pages },
 		} = await axios.get(`${API_URL}/${type}/movie`, {
 			params: {
 				api_key: process.env.REACT_APP_MOVIE_API_KEY,
 				query: searchMovie,
+				page: page,
 			},
 		});
 
 		setMovies(results);
+		setTotalPages(total_pages);
 	};
 
 	const fetchMovieWithGenre = async (searchGenre, searchSecondGenre) => {
 		const type = searchGenre ? "discover" : "discover";
 		const {
 			data: { results },
+			data: { total_pages },
 		} = await axios.get(`${API_URL}/${type}/movie`, {
 			params: {
 				api_key: process.env.REACT_APP_MOVIE_API_KEY,
 				with_genres: searchGenre + "," + searchSecondGenre,
+				page: page,
 			},
 		});
 
 		setMovies(results);
+		setTotalPages(total_pages);
 	};
 
 	const fetchGenres = async () => {
@@ -68,7 +76,6 @@ function App() {
 	function CreateGenre(props) {
 		return <Genre key={props.id} name={props.name} id={props.id} />;
 	}
-
 	return (
 		<div className="App">
 			<header>
@@ -86,11 +93,39 @@ function App() {
 					>
 						{genres.map(CreateGenre)}
 					</select>
-					<button type="submit">Search!</button>
+					<button
+						type="submit"
+						onClick={() => {
+							setPage(1);
+						}}
+					>
+						Search
+					</button>
 				</form>
 			</header>
 
 			<div className="container">{renderMovies()}</div>
+			<form onSubmit={searchMovies}>
+				<button
+					onClick={() => {
+						setPage(page === 1 ? { totalPages } : page - 1);
+					}}
+				>
+					previous
+				</button>
+
+				<button
+					type=""
+					onClick={() => {
+						setPage(page === totalPages ? 1 : page + 1);
+					}}
+				>
+					Next
+				</button>
+				<p>
+					{page} /{totalPages}
+				</p>
+			</form>
 		</div>
 	);
 }
