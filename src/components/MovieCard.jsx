@@ -42,13 +42,9 @@ const MovieCard = (props) => {
 	};
 	fetchMovie(props.id);
 	const genre = movie.genres;
-	// genre?.map((genre) => {
-	// 	console.log(genre.name);
-	// });
+
 	const IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
-	// console.log(movie);
-	// console.log(movie.overview);
-	// console.log(movie.genre_ids);
+
 	return (
 		<div className="popup-box">
 			<div className="box">
