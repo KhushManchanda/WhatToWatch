@@ -3,6 +3,8 @@ import axios from "axios";
 import "./CSS/App.css";
 import MovieThumbnail from "./components/MovieThumbnail.jsx";
 import Genre from "./components/Genres.jsx";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 function App() {
 	const API_URL = "https://api.themoviedb.org/3";
@@ -118,29 +120,43 @@ function App() {
 			</header>
 
 			<div className="container">{renderMovies()}</div>
-
+			<br />
+			
+				
 			<form onSubmit={searchMovies}>
+			<div className="d-flex flex-row justify-content-center align-items-center">
+				
 				<button
+				className="btn page-button p-2"
 					onClick={() => {
-						setPage(page === 1 ? { totalPages } : page - 1);
+						setPage(page === 1 ?  totalPages  : page - 1);
 					}}
 				>
-					previous
+					
+					<ArrowBackIosIcon/>
 				</button>
-
+				
+				<p className="page-count p-2">
+					{page} /{totalPages}
+				</p>
 				<button
+				className="btn page-button p-2"
 					type=""
 					onClick={() => {
 						setPage(page === totalPages ? 1 : page + 1);
 					}}
 				>
-					Next
+					<ArrowForwardIosIcon/>
+					
 				</button>
-				<p>
-					{page} /{totalPages}
-				</p>
+				</div>
 			</form>
-		</div>
+			<br />
+			<br />
+			<br />
+			</div>
+			
+		
 	);
 }
 
