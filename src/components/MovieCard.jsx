@@ -51,7 +51,7 @@ const MovieCard = (props) => {
 				<span className="close-icon" onClick={props.handleClose}>
 					x
 				</span>
-				content=
+				
 				{
 					<div className="d-flex flex-row ">
 						<div className="p-2">

@@ -107,6 +107,7 @@ function App() {
 
 					<button
 						type="submit"
+						className="btn btn-primary mb-3"
 						onClick={() => {
 							setPage(1);
 						}}
