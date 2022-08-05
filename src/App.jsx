@@ -86,13 +86,12 @@ function App() {
 			<header>
 				<nav class="navbar navbar-light bg-dark">
 					<a class="navbar-brand" href="#">
-						<img
+						<img className="icon"
 							src={require("./Image/icon.png")}
-							width="30"
-							height="30"
+							
 							alt="What to Watch"
 						/>
-						What to watch
+						<span className="title">What to watch</span>
 					</a>
 				</nav>
 
