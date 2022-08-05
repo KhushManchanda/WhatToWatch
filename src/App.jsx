@@ -84,7 +84,14 @@ function App() {
 	return (
 		<div className="App">
 			<header>
-				<h1 class="navbar navbar-light bg-dark">What to watch</h1>
+				<nav class="navbar navbar-light bg-dark">
+				<a class="navbar-brand" href="#">
+    <img src="public/icon.png" width="30" height="30" alt=""/> 
+	What to watch
+  </a>
+				
+				</nav>
+				
 
 				<form className="input-class" onSubmit={searchMovies}>
 					<div>
