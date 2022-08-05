@@ -84,14 +84,10 @@ function App() {
 	return (
 		<div className="App">
 			<header>
-				<nav class="navbar navbar-light bg-dark">
-					<a class="navbar-brand" href="#">
-						<img className="icon"
-							src={require("./Image/icon.png")}
-							
-							alt="What to Watch"
-						/>
-						<span className="title">What to watch</span>
+				<nav class="navbar navbar-light bg-dark navbar-css">
+					<a class="navbar-brand icon-frame" href="#">
+						<img className="icon" src={require("./Image/icon.jpg")} alt="" />
+						<span className="navbar-title">What to Watch</span>
 					</a>
 				</nav>
 
