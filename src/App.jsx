@@ -3,8 +3,8 @@ import axios from "axios";
 import "./CSS/App.css";
 import MovieThumbnail from "./components/MovieThumbnail.jsx";
 import Genre from "./components/Genres.jsx";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 function App() {
 	const API_URL = "https://api.themoviedb.org/3";
@@ -85,13 +85,16 @@ function App() {
 		<div className="App">
 			<header>
 				<nav class="navbar navbar-light bg-dark">
-				<a class="navbar-brand" href="#">
-    <img src="public/icon.png" width="30" height="30" alt=""/> 
-	What to watch
-  </a>
-				
+					<a class="navbar-brand" href="#">
+						<img
+							src={require("./Image/icon.png")}
+							width="30"
+							height="30"
+							alt="What to Watch"
+						/>
+						What to watch
+					</a>
 				</nav>
-				
 
 				<form className="input-class" onSubmit={searchMovies}>
 					<div>
@@ -128,42 +131,36 @@ function App() {
 
 			<div className="container">{renderMovies()}</div>
 			<br />
-			
-				
+
 			<form onSubmit={searchMovies}>
-			<div className="d-flex flex-row justify-content-center align-items-center">
-				
-				<button
-				className="btn page-button p-2"
-					onClick={() => {
-						setPage(page === 1 ?  totalPages  : page - 1);
-					}}
-				>
-					
-					<ArrowBackIosIcon/>
-				</button>
-				
-				<p className="page-count p-2">
-					{page} /{totalPages}
-				</p>
-				<button
-				className="btn page-button p-2"
-					type=""
-					onClick={() => {
-						setPage(page === totalPages ? 1 : page + 1);
-					}}
-				>
-					<ArrowForwardIosIcon/>
-					
-				</button>
+				<div className="d-flex flex-row justify-content-center align-items-center">
+					<button
+						className="btn page-button p-2"
+						onClick={() => {
+							setPage(page === 1 ? totalPages : page - 1);
+						}}
+					>
+						<ArrowBackIosIcon />
+					</button>
+
+					<p className="page-count p-2">
+						{page} /{totalPages}
+					</p>
+					<button
+						className="btn page-button p-2"
+						type=""
+						onClick={() => {
+							setPage(page === totalPages ? 1 : page + 1);
+						}}
+					>
+						<ArrowForwardIosIcon />
+					</button>
 				</div>
 			</form>
 			<br />
 			<br />
 			<br />
-			</div>
-			
-		
+		</div>
 	);
 }
 
