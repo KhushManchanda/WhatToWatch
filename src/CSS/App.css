@@ -94,7 +94,7 @@ body {
    width: 10rem;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 650px) {
   .search-btn{
     width: 100%;
   } 
