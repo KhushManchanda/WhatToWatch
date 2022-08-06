@@ -10,10 +10,7 @@ body {
 
   display: grid;
   gap: 45px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-
- 
-  
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;  
 }
 
 
@@ -26,7 +23,6 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     
   }
-  
 }
 
 @media (max-width: 900px){
@@ -34,14 +30,12 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     
   }
-  
 }
 
 @media (max-width: 600px) {
   .container{
     grid-template-columns: 1fr 1fr;
   }
-  
 }
 
 
@@ -54,13 +48,7 @@ body {
 }
 
 .input-class{
-  text-align: center;
   margin-bottom: 2%;
-  margin-left: 400px;
-  margin-right: 400px;
-  display: grid;
-  gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .page-button{
@@ -91,7 +79,7 @@ body {
 .navbar .icon-frame span{
   position:relative;
   top:0.5rem;
- }
+}
 
 .App header nav{
   line-height:1em;
@@ -99,21 +87,15 @@ body {
 
 .App header form{
   padding-top:2rem;
- }
+}
 
- .div1 {
-   
-   height: max-content;
-   
-   width: max-content;
- }
 
- .search-btn {
+.search-btn {
    width: 10rem;
- }
+}
 
- .input-class{
-  align-items: center;
-  justify-content: center;
- }
-
+@media (max-width: 750px) {
+  .search-btn{
+    width: 100%;
+  } 
+}

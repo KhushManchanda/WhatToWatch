@@ -7,6 +7,19 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 function App() {
+	const [isMobile, setIsMobile] = useState(window.innerWidth < 650);
+
+	useEffect(() => {
+		window.addEventListener(
+			"resize",
+			() => {
+				const ismobile = window.innerWidth < 650;
+				if (ismobile !== isMobile) setIsMobile(ismobile);
+			},
+			false
+		);
+	}, [isMobile]);
+
 	const API_URL = "https://api.themoviedb.org/3";
 	const [movies, setMovies] = useState([]);
 	const [genres, setGenres] = useState([]);
@@ -91,8 +104,14 @@ function App() {
 					</a>
 				</nav>
 
-				<form className="input-class" onSubmit={searchMovies}>
-					<div className="d-flex flex-row div1">
+				<form
+					className={`${
+						isMobile
+							? "d-flex flex-column justify-content-center input-class"
+							: "d-flex flex-row justify-content-center input-class"
+					}`}
+					onSubmit={searchMovies}
+				>
 					<div className="p-2">
 						<select
 							class="form-select form-select-lg mb-3"
@@ -113,17 +132,15 @@ function App() {
 						</select>
 					</div>
 					<div className="p-2">
-
-					<button
-						type="submit"
-						className="btn btn-primary btn-lg search-btn mb-3"
-						onClick={() => {
-							setPage(1);
-						}}
-					>
-						Search
-					</button>
-					</div>
+						<button
+							type="submit"
+							className="btn btn-primary btn-lg search-btn mb-3"
+							onClick={() => {
+								setPage(1);
+							}}
+						>
+							Search
+						</button>
 					</div>
 				</form>
 			</header>
