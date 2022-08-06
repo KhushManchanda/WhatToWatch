@@ -100,3 +100,7 @@ body {
    height: max-content;
    width: max-content;
  }
+
+ .search-btn {
+   width: 10rem;
+ }

@@ -92,7 +92,7 @@ function App() {
 				</nav>
 
 				<form className="input-class" onSubmit={searchMovies}>
-					<div className="d-flex flex-row justify-content-center div1">
+					<div className="d-flex flex-row div1">
 					<div className="p-2">
 						<select
 							class="form-select form-select-lg mb-3"
@@ -116,7 +116,7 @@ function App() {
 
 					<button
 						type="submit"
-						className="btn btn-primary mb-3"
+						className="btn btn-primary btn-lg search-btn mb-3"
 						onClick={() => {
 							setPage(1);
 						}}
