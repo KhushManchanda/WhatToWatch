@@ -100,4 +100,42 @@
 
 }
 
+@media (max-width: 1200px) {
+  .poster-image {
+    width: auto;
+  height: auto;
+  max-height: 50vh;
+  border-radius: 25px;
+}
+.movie-name {
+  
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.overview{
+  font-size: 1rem;
+}
+.genre-box {
+  border-radius: 10px;
+  background-color: rgb(63, 63, 63);
+  margin: .3rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+
+}
+
+.rating{
+  font-size: 1rem;
+}
+
+  
+}
+
+@media (max-width: 900px) {
+  .poster-image{
+    display: none;
+  }
+}
+
 

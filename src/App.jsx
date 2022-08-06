@@ -92,7 +92,8 @@ function App() {
 				</nav>
 
 				<form className="input-class" onSubmit={searchMovies}>
-					<div>
+					<div className="d-flex flex-row justify-content-center div1">
+					<div className="p-2">
 						<select
 							class="form-select form-select-lg mb-3"
 							onChange={(e) => setSearchGenre(e.target.value)}
@@ -101,7 +102,7 @@ function App() {
 							{genres.map(CreateGenre)}
 						</select>
 					</div>
-					<div>
+					<div className="p-2">
 						<select
 							id="month"
 							class="form-select form-select-lg mb-3"
@@ -111,6 +112,7 @@ function App() {
 							{genres.map(CreateGenre)}
 						</select>
 					</div>
+					<div className="p-2">
 
 					<button
 						type="submit"
@@ -121,6 +123,8 @@ function App() {
 					>
 						Search
 					</button>
+					</div>
+					</div>
 				</form>
 			</header>
 

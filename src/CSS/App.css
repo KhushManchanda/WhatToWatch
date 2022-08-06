@@ -17,6 +17,27 @@ body {
   width: 100%;
 }
 
+@media (max-width: 1200px) {
+  .container{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  
+}
+
+@media (max-width: 900px) {
+  .container{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+}
+
+@media (max-width: 600px) {
+  .container{
+    grid-template-columns: 1fr 1fr;
+  }
+  
+}
+
 
 .title {
   text-align: center;
@@ -72,4 +93,10 @@ body {
 
 .App header form{
   padding-top:2rem;
+ }
+
+ .div1 {
+   
+   height: max-content;
+   width: max-content;
  }
