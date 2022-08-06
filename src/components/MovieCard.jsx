@@ -69,7 +69,7 @@ const MovieCard = (props) => {
 							<div className="d-flex flex-column align-items-left">
 								<h1 className="p-2 movie-name">{movie.title}</h1>
 								<h6 className="p-2 rating"> Rating: {movie.vote_average}</h6>
-								<div className="d-flex flex-row">
+								<div className="d-flex flex-row genre-try">
 									{genre?.map((genre) => {
 										return <p className="p-2 genre-box">{genre.name}</p>;
 									})}

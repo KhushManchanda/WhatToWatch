@@ -11,22 +11,28 @@ body {
   display: grid;
   gap: 45px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+ 
   
 }
+
+
 .movie-cover {
   width: 100%;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 900px) and (max-width: 1200px){
   .container{
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    
   }
   
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px){
   .container{
     grid-template-columns: 1fr 1fr 1fr;
+    
   }
   
 }
@@ -98,9 +104,16 @@ body {
  .div1 {
    
    height: max-content;
+   
    width: max-content;
  }
 
  .search-btn {
    width: 10rem;
  }
+
+ .input-class{
+  align-items: center;
+  justify-content: center;
+ }
+
