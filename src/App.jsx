@@ -84,8 +84,10 @@ function App() {
 	return (
 		<div className="App">
 			<header>
-				<nav class="navbar navbar-light bg-dark">
+				<nav class="navbar navbar-light bg-dark navbar-css">
+				
 					<a class="navbar-brand" href="#">
+						
 						<img className="icon"
 							src={require("./Image/icon.png")}
 							
