@@ -100,7 +100,7 @@
 
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px){
   .poster-image {
     width: auto;
   height: auto;
@@ -122,8 +122,15 @@
   margin: .3rem;
   font-size: 0.8rem;
   font-weight: bold;
+  
 
 }
+.genre-try {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
 
 .rating{
   font-size: 1rem;
@@ -132,7 +139,7 @@
   
 }
 
-@media (max-width: 900px) {
+@media (max-width: 899px){
   .poster-image{
     display: none;
   }
