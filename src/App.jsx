@@ -80,6 +80,7 @@ function App() {
 	useEffect(() => {
 		fetchMovies();
 		fetchGenres();
+		// eslint-disable-next-line
 	}, []);
 
 	const renderMovies = () =>
@@ -98,7 +99,7 @@ function App() {
 		<div className="App">
 			<header>
 				<nav class="navbar navbar-light bg-dark navbar-css">
-					<a class="navbar-brand icon-frame" href="#">
+					<a class="navbar-brand icon-frame" href="/">
 						<img className="icon" src={require("./Image/icon.jpg")} alt="" />
 						<span className="navbar-title">What to Watch</span>
 					</a>
