@@ -5,6 +5,7 @@ import MovieThumbnail from "./components/MovieThumbnail.jsx";
 import Genre from "./components/Genres.jsx";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import Description from "./components/Description.jsx";
 
 function App() {
 	const [isMobile, setIsMobile] = useState(window.innerWidth < 650);
@@ -29,6 +30,12 @@ function App() {
 
 	const [searchGenre, setSearchGenre] = useState("");
 	const [searchSecondGenre, setSearchSecondGenre] = useState("");
+
+	const [isOpen, setIsOpen] = useState(true);
+
+	const togglePopup = () => {
+		setIsOpen(!isOpen);
+	};
 
 	const fetchMovies = async (searchMovie) => {
 		const type = searchMovie ? "search" : "discover";
@@ -77,11 +84,20 @@ function App() {
 		setGenres(genres);
 	};
 
+	function popupDescription() {
+		return <Description handleClose={togglePopup} />;
+	}
+
 	useEffect(() => {
 		fetchMovies();
 		fetchGenres();
 		// eslint-disable-next-line
 	}, []);
+
+	useEffect(() => {
+		popupDescription();
+		// eslint-disable-next-line
+	}, [setIsOpen]);
 
 	const renderMovies = () =>
 		movies.map((movie) => <MovieThumbnail key={movie.id} movie={movie} />);
@@ -104,6 +120,7 @@ function App() {
 						<span className="navbar-title">What to Watch</span>
 					</a>
 				</nav>
+				{isOpen ? <Description handleClose={togglePopup} /> : null}
 
 				<form
 					className={`${

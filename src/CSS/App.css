@@ -97,5 +97,9 @@ body {
 @media (max-width: 650px) {
   .search-btn{
     width: 100%;
+  }
+  .input-class{
+    margin-left: 7%;
+    margin-right: 7%;
   } 
 }
